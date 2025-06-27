@@ -12,6 +12,7 @@ INSERT INTO tb_participante(nome, email) VALUES ('Teresa Silva', 'teresa@gmail.c
 INSERT INTO tb_atividade_participante(atividade_id, participante_id) VALUES (1,1);
 INSERT INTO tb_atividade_participante(atividade_id, participante_id) VALUES (1,2);
 INSERT INTO tb_atividade_participante(atividade_id, participante_id) VALUES (1,3);
+INSERT INTO tb_atividade_participante(atividade_id, participante_id) VALUES (2,1);
 INSERT INTO tb_atividade_participante(atividade_id, participante_id) VALUES (2,3);
 INSERT INTO tb_atividade_participante(atividade_id, participante_id) VALUES (2,4);
 
