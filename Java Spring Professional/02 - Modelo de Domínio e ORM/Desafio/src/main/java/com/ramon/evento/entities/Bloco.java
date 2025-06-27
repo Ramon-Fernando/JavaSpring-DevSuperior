@@ -3,6 +3,7 @@ package com.ramon.evento.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +19,10 @@ public class Bloco {
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant fim;
+
+    @ManyToOne
+    @JoinColumn(name = "atividade_id")
+    private Atividade atividade;
 
 // ------------------------------------------------------------------------
 
