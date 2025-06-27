@@ -2,7 +2,9 @@ package com.ramon.evento.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_participante")
@@ -17,6 +19,9 @@ public class Participante {
 
     @Column(unique = true)
     private String email;
+
+    @ManyToMany(mappedBy = "participantes")
+    private Set<Atividade> atividades = new HashSet<>();
 
     // ----------------------------------------------------------
 
