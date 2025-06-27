@@ -2,10 +2,7 @@ package com.ramon.evento.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -27,7 +24,7 @@ public class Atividade {
     private Categoria categoria;
 
     @OneToMany(mappedBy = "atividade")
-    private List<Bloco> blocos;
+    private List<Bloco> blocos = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "tb_atividade_participante",
@@ -80,6 +77,22 @@ public class Atividade {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Bloco> getBlocos() {
+        return blocos;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 
     @Override
