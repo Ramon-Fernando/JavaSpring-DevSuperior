@@ -49,7 +49,7 @@ public class ClientService {
     @Transactional
     public ClientDTO update(Long id, ClientDTO dto) {
         Client entity = repository.getReferenceById(id);
-        entity = mapper.toEntity(dto);
+        mapper.updateEntityFromDTO(dto, entity);
         entity = repository.save(entity);
         return mapper.toDTO(entity);
     }
