@@ -4,11 +4,14 @@ import com.ramon.client.dto.ClientDTO;
 import com.ramon.client.entities.Client;
 import com.ramon.client.mapper.ClientMapper;
 import com.ramon.client.repositories.ClientRepository;
+import com.ramon.client.services.exceptions.DatabaseException;
 import com.ramon.client.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -63,9 +66,17 @@ public class ClientService {
 
     //Deletar cliente
 
-    @Transactional
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id){
-        repository.deleteById(id);
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
+        try {
+            repository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Falha de integridade referencial");
+        }
     }
 
 
