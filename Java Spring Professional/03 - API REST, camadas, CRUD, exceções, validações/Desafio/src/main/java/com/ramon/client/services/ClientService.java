@@ -45,6 +45,17 @@ public class ClientService {
         return mapper.toDTO(entity);
     }
 
+    //Atualizar cliente
+    @Transactional
+    public ClientDTO update(Long id, ClientDTO dto) {
+        Client entity = repository.getReferenceById(id);
+        entity = mapper.toEntity(dto);
+        entity = repository.save(entity);
+        return mapper.toDTO(entity);
+    }
+
+
+
 
 
 }
