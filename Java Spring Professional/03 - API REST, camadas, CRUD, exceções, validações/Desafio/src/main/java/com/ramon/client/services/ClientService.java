@@ -54,6 +54,15 @@ public class ClientService {
         return mapper.toDTO(entity);
     }
 
+    //Deletar cliente
+
+    @Transactional
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
+
+
 
 
 
