@@ -29,12 +29,22 @@ public class ClientService {
         return result.map(mapper::toDTO);
     }
 
-    //Cliente por id
+    //Procurar cliente por id
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id) {
         Optional<Client> result = repository.findById(id);
         Client client = result.get();
         return mapper.toDTO(client);
     }
+
+    //Inserir novo cliente
+    @Transactional
+    public ClientDTO insert(ClientDTO dto){
+        Client entity = mapper.toEntity(dto);
+        entity = repository.save(entity);
+        return mapper.toDTO(entity);
+    }
+
+
 
 }
