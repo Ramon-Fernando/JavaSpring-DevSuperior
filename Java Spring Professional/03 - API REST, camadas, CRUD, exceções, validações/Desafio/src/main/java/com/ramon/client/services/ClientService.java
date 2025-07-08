@@ -5,6 +5,7 @@ import com.ramon.client.entities.Client;
 import com.ramon.client.mapper.ClientMapper;
 import com.ramon.client.repositories.ClientRepository;
 import com.ramon.client.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -49,10 +50,15 @@ public class ClientService {
     //Atualizar cliente
     @Transactional
     public ClientDTO update(Long id, ClientDTO dto) {
-        Client entity = repository.getReferenceById(id);
-        mapper.updateEntityFromDTO(dto, entity);
-        entity = repository.save(entity);
-        return mapper.toDTO(entity);
+        try {
+            Client entity = repository.getReferenceById(id);
+            mapper.updateEntityFromDTO(dto, entity);
+            entity = repository.save(entity);
+            return mapper.toDTO(entity);
+        }
+        catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
     }
 
     //Deletar cliente
