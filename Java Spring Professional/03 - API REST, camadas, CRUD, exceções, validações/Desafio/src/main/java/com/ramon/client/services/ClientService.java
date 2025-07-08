@@ -4,6 +4,7 @@ import com.ramon.client.dto.ClientDTO;
 import com.ramon.client.entities.Client;
 import com.ramon.client.mapper.ClientMapper;
 import com.ramon.client.repositories.ClientRepository;
+import com.ramon.client.services.exceptions.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,8 @@ public class ClientService {
     //Procurar cliente por id
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id) {
-        Optional<Client> result = repository.findById(id);
-        Client client = result.get();
+        Client client = repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Recurso não encontrado"));
         return mapper.toDTO(client);
     }
 
