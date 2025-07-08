@@ -1,0 +1,9 @@
+package com.ramon.client.mapper;
+
+import com.ramon.client.dto.ClientDTO;
+import com.ramon.client.entities.Client;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring")
+public interface ClientMapper extends BaseMapper<ClientDTO, Client> {
+}
