@@ -1,5 +1,6 @@
 package com.ramon.client.dto;
 
+import com.ramon.client.entities.Client;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 
