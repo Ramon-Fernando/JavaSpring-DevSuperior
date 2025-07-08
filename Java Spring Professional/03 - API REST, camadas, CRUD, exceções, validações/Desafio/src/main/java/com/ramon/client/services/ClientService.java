@@ -6,7 +6,12 @@ import com.ramon.client.mapper.ClientMapper;
 import com.ramon.client.repositories.ClientRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
+@Service
 public class ClientService {
 
     ClientRepository repository;
@@ -17,10 +22,19 @@ public class ClientService {
         this.mapper = mapper;
     }
 
+    //Todos os clientes paginados
+    @Transactional(readOnly = true)
     public Page<ClientDTO> findAll(Pageable pageable) {
         Page<Client> result = repository.findAll(pageable);
         return result.map(mapper::toDTO);
     }
 
+    //Cliente por id
+    @Transactional(readOnly = true)
+    public ClientDTO findById(Long id) {
+        Optional<Client> result = repository.findById(id);
+        Client client = result.get();
+        return mapper.toDTO(client);
+    }
 
 }
