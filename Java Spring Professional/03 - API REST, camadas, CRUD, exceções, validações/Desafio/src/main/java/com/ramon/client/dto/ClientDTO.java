@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class ClientDTO {
 
     private Long id;
-    @NotBlank(message = "Campo requerida")
+    @NotBlank(message = "Campo requerido")
     private String name;
     private String cpf;
     private Double income;
