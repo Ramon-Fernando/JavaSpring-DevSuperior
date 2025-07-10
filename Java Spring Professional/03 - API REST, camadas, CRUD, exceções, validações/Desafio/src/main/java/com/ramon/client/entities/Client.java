@@ -27,7 +27,7 @@ public class Client {
         this.cpf = cpf;
         this.income = income;
         this.birthDate = birthDate;
-        this.children = children;
+        this.children = children;;;;
     }
 
     public Long getId() {
