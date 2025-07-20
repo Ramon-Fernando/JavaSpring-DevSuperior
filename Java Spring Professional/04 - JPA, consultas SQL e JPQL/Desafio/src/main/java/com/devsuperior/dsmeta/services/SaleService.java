@@ -28,7 +28,7 @@ public class SaleService {
 		return new SaleMinDTO(entity);
 	}
 
-	public Page<SalesReportDTO> showSummary(String startDate, String endDate, String sellerName, Pageable pageable) {
+	public Page<SalesReportDTO> showReport(String startDate, String endDate, String sellerName, Pageable pageable) {
 		LocalDate end = endDate.isBlank() ? LocalDate.now() : LocalDate.parse(endDate);
 		LocalDate start = startDate.isBlank() ? end.minusYears(1L) : LocalDate.parse(startDate);
 
