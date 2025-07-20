@@ -32,7 +32,7 @@ public class SaleService {
 		LocalDate end = endDate.isBlank() ? LocalDate.now() : LocalDate.parse(endDate);
 		LocalDate start = startDate.isBlank() ? end.minusYears(1L) : LocalDate.parse(startDate);
 
-		return repository.showSummary(start, end, sellerName, pageable);
+		return repository.showReport(start, end, sellerName, pageable);
 	}
 
 
